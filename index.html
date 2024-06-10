@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tianjin Huaruijiaan Technology Co., Ltd.</title>
+    <title>Tianjin Huarui Jiaan Technology Co., Ltd.</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-image: url('https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/02-背景图片.jpg'); /* Replace with actual background image path */
+            background-image: url('https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/02-背景图片.jpg'); /* Replace with the actual background image path */
             background-size: cover;
+            background-attachment: fixed;
             color: #333;
         }
         header, nav, main, footer {
@@ -22,13 +23,29 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         header {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo {
+            max-height: 80px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        .company-title {
+            background-image: url('https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/02-背景图片.jpg'); /* Replace with the actual background image path */
+            background-size: cover;
+            padding: 10px 20px;
+            white-space: nowrap;
+            font-size: 1.5em;
+            color: #004d99;
         }
         nav ul {
             list-style: none;
             padding: 0;
             display: flex;
             justify-content: center;
+            margin: 20px 0;
         }
         nav ul li {
             margin: 0 15px;
@@ -39,6 +56,11 @@
             color: #333;
             font-weight: bold;
             font-size: 1.2em; /* Adjust font size */
+            padding: 10px 15px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #007BFF;
         }
         .dropdown-content {
             display: none;
@@ -68,6 +90,10 @@
         .content {
             text-align: left;
             margin: 20px 0;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
         .content p {
             text-indent: 2em;
@@ -82,18 +108,38 @@
             gap: 20px;
         }
         .product-window {
-            padding: 10px;
+            padding: 20px;
             border: 1px solid #ccc;
             text-align: center;
             cursor: pointer;
             background-color: #f9f9f9;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
         .product-window:hover {
             background-color: #e0e0e0;
+            transform: translateY(-5px);
         }
         .product-window img {
             max-width: 100%;
             height: auto;
+            border-radius: 8px;
+        }
+        .download-link, .image-links {
+            display: block;
+            margin-top: 10px;
+        }
+        .image-links img {
+            max-width: 100%;
+            height: auto;
+            margin: 5px 0;
+            border-radius: 8px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #777;
         }
     </style>
     <script>
@@ -104,137 +150,208 @@
             });
             document.getElementById(sectionId).classList.remove('hidden');
         }
+        function addDownloadLink(windowId, filePath) {
+            var windowElement = document.getElementById(windowId);
+            var link = document.createElement('a');
+            link.href = filePath;
+            link.innerText = 'Download File';
+            link.className = 'download-link';
+            windowElement.appendChild(link);
+        }
+        function addImageLinks(windowId, imagePaths) {
+            var windowElement = document.getElementById(windowId);
+            var container = document.createElement('div');
+            container.className = 'image-links';
+            imagePaths.forEach(function(path) {
+                var img = document.createElement('img');
+                img.src = path;
+                container.appendChild(img);
+            });
+            windowElement.appendChild(container);
+        }
     </script>
 </head>
 <body onload="showSection('home')">
     <header>
-        <h1>Tianjin Huaruijiaan Technology Co., Ltd.</h1>
-        <nav>
-            <ul>
-                <li><a href="#home" onclick="showSection('home')">Home</a></li>
-                <li class="dropdown">
-                    <a href="#products" onclick="showSection('products')">Products and Services</a>
-                    <div class="dropdown-content">
-                        <a href="#epa30b" onclick="showSection('epa30b')">EPA 30B Sampling Tubes</a>
-                        <a href="#mercury-testing" onclick="showSection('mercury-testing')">Mercury Testing Services</a>
-                        <a href="#aerosol-testing" onclick="showSection('aerosol-testing')">Aerosol Particle Size Spectrum Testing Services</a>
-                        <a href="#ion-analysis" onclick="showSection('ion-analysis')">Inorganic Water-Soluble Ion Analysis Services</a>
-                    </div>
-                </li>
-                <li><a href="#about" onclick="showSection('about')">About Us</a></li>
-                <li><a href="#contact" onclick="showSection('contact')">Contact Us</a></li>
-            </ul>
-        </nav>
+        <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/01-logo.png" alt="Company Logo" class="logo"> <!-- Replace with the actual logo path -->
+        <h1 class="company-title">Tianjin Huarui Jiaan Technology Co., Ltd.</h1>
     </header>
+    <nav>
+        <ul>
+            <li><a href="#home" onclick="showSection('home')">Home</a></li>
+            <li class="dropdown">
+                <a href="#products" onclick="showSection('products')">Products and Services</a>
+                <div class="dropdown-content">
+                    <a href="#epa30b-details" onclick="showSection('epa30b-details')">EPA 30B Sampling Tube</a>
+                    <a href="#mercury-testing-details" onclick="showSection('mercury-testing-details')">Mercury Testing Service</a>
+                    <a href="#aerosol-testing-details" onclick="showSection('aerosol-testing-details')">Aerosol Particle Size Distribution Testing Service</a>
+                    <a href="#ion-analysis-details" onclick="showSection('ion-analysis-details')">Water-soluble Inorganic Ion Analysis Service</a>
+                </div>
+            </li>
+            <li><a href="#about" onclick="showSection('about')">About Us</a></li>
+            <li><a href="#contact" onclick="showSection('contact')">Contact Us</a></li>
+        </ul>
+    </nav>
 
     <main>
         <section id="home">
             <div class="content">
-                <p>Welcome to Tianjin Huaruijiaan Technology Co., Ltd. We are a high-tech enterprise focusing on environmental protection technology research and application. We are committed to providing efficient and accurate environmental monitoring solutions to ensure that our clients obtain accurate and reliable environmental monitoring data.</p>
-                <p>Our services target small and medium-sized enterprises as well as university research teams. We offer affordable sample testing services to ensure high testing quality while reducing cost pressure for our clients. Additionally, we provide customized sample analysis services to meet unique needs in special projects and research. We always adhere to a customer-centric approach, continuously improving customer satisfaction and trust through technological innovation and service optimization.</p>
+                <p>Welcome to Tianjin Huarui Jiaan Technology Co., Ltd., a high-tech enterprise specializing in the research and application of environmental protection technology. We are committed to providing efficient and accurate environmental monitoring solutions to ensure that customers can obtain accurate and reliable environmental monitoring data.</p>
+                <p>Our services are aimed at small and medium-sized enterprises as well as research teams in universities. To meet these needs, we offer cost-effective sample testing services to ensure testing quality while reducing customer costs. In addition, we provide customized sample analysis services to meet the unique needs of customers in special projects and research. We always adhere to a customer-centric approach, continuously improving customer satisfaction and trust through technological innovation and service optimization.</p>
             </div>
         </section>
 
         <section id="products" class="hidden">
             <div class="content product-grid">
-                <div class="product-window" onclick="showSection('epa30b')">
-                    <h3 style="color: blue; font-weight: bold;">EPA 30B Sampling Tubes</h3>
-                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/03-30B采样示意图.jpg" alt="EPA 30B Sampling Tubes">
+                <div class="product-window" onclick="showSection('epa30b-details')">
+                    <h3 style="color: blue; font-weight: bold;">EPA 30B Sampling Tube</h3>
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/03-30B采样示意图.jpg" alt="EPA 30B Sampling Tube Image">
                 </div>
-                <div class="product-window" onclick="showSection('mercury-testing')">
-                    <h3 style="color: blue; font-weight: bold;">Mercury Testing Services</h3>
-                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/04-LUMEX测汞仪原理示意图.png" alt="Mercury Testing Services">
+                <div class="product-window" onclick="showSection('mercury-testing-details')">
+                    <h3 style="color: blue; font-weight: bold;">Mercury Testing Service</h3>
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/04-LUMEX测汞仪原理示意图.png" alt="Mercury Testing Service Image">
                 </div>
-                <div class="product-window" onclick="showSection('aerosol-testing')">
-                    <h3 style="color: blue; font-weight: bold;">Aerosol Particle Size Spectrum Testing Services</h3>
-                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/06-气溶胶测试-02.png" alt="Aerosol Particle Size Spectrum Testing Services">
+                <div class="product-window" onclick="showSection('aerosol-testing-details')">
+                    <h3 style="color: blue; font-weight: bold;">Aerosol Particle Size Distribution Testing Service</h3>
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/06-气溶胶测试-02.png" alt="Aerosol Particle Size Distribution Testing Service Image">
                 </div>
-                <div class="product-window" onclick="showSection('ion-analysis')">
-                    <h3 style="color: blue; font-weight: bold;">Inorganic Water-Soluble Ion Analysis Services</h3>
-                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/05-离子色谱.png" alt="Inorganic Water-Soluble Ion Analysis Services">
+                <div class="product-window" onclick="showSection('ion-analysis-details')">
+                    <h3 style="color: blue; font-weight: bold;">Water-soluble Inorganic Ion Analysis Service</h3>
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/05-离子色谱.png" alt="Water-soluble Inorganic Ion Analysis Service Image">
+                </div>
+                <div class="product-window" onclick="showSection('new-product-1-details')">
+                    <h3 style="color: blue; font-weight: bold;">New Product 1</h3>
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/new-product-1.png" alt="New Product 1 Image">
+                </div>
+                <div class="product-window" onclick="showSection('new-product-2-details')">
+                    <h3 style="color: blue; font-weight: bold;">New Product 2</h3>
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/new-product-2.png" alt="New Product 2 Image">
                 </div>
             </div>
         </section>
 
-        <section id="epa30b" class="hidden">
+        <section id="epa30b-details" class="hidden">
             <div class="content">
-                <p><strong>EPA 30B Sampling Tubes:</strong></p>
-                <p>Sampling method: 30B mercury adsorption tubes are specialized sampling tubes for method 30B, meeting US EPA Method 30B requirements. They are divided into three types: total mercury adsorption tubes, elemental mercury adsorption tubes, and spiked adsorption tubes. These tubes use modified activated carbon, installed at the front end of the heated sampling probe of the mercury sampling instrument, to adsorb and capture gaseous mercury in the flue gas. The 30B mercury adsorption tubes are used for flue gas mercury sampling from fixed pollution sources.</p>
+                <p><strong>EPA 30B Sampling Tube:</strong></p>
+                <p>Sampling method: 30B mercury adsorption tube is a special sampling tube for method 30B, which meets the requirements of US EPA Method 30B. It is divided into three types: total gas mercury adsorption tube, gas phase mercury adsorption tube, and spiked adsorption tube. It uses modified activated carbon and is installed at the front end of the heated sampling probe of the gas mercury sampler to absorb and collect gaseous mercury in the flue gas. The 30B mercury adsorption tube is used for flue gas mercury sampling from fixed pollution sources.</p>
                 <p>Sampling tube parameters: 185*10 mm;</p>
                 <p>Technical features:</p>
                 <ul>
-                    <li>Two-section adsorption tube, filled with modified coconut shell activated carbon, separated by quartz fiber cotton</li>
-                    <li>Modified activated carbon has extremely low mercury content, large mercury adsorption capacity, and high collection efficiency, making it difficult to penetrate due to high mercury background</li>
-                    <li>Each tube has a unique number, making it easy to control the sampling and analysis process</li>
-                    <li>Supports customized spiked adsorption tubes with a spiking error within ±3%</li>
+                    <li>Two-section adsorption tube with modified coconut shell activated carbon filling, quartz fiber cotton partition</li>
+                    <li>Extremely low mercury content in modified activated carbon, high adsorption capacity for mercury, high collection efficiency, and not easy to penetrate due to high mercury background</li>
+                    <li>Each tube has a unique number, facilitating the control of the sampling and analysis process</li>
+                    <li>Support for customized spiked adsorption tubes with spiking error within ±3%</li>
                 </ul>
+                <a href="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/epa30b-sample.pdf" class="download-link">Download File</a> <!-- Replace with the actual file path -->
+                <div class="image-links">
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/03-30B采样示意图.jpg" alt="EPA 30B Sampling Tube Image 1">
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/03-30B采样示意图-2.jpg" alt="EPA 30B Sampling Tube Image 2">
+                </div>
             </div>
         </section>
 
-        <section id="mercury-testing" class="hidden">
+        <section id="mercury-testing-details" class="hidden">
             <div class="content">
-                <p><strong>Mercury Testing Services: PYRO-915M (LUMEX)</strong></p>
-                <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/07-PYRO-915M.jpg" alt="PYRO-915M">
+                <p><strong>Mercury Testing Service: PYRO-915M (LUMEX)</strong></p>
+                <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/07-PYRO-915M.jpg" alt="PYRO-915M Image">
                 <p><strong>Test samples:</strong> Mercury (Hg) content in solid, liquid, and gas samples;</p>
                 <p><strong>Test standards:</strong></p>
                 <ul>
-                    <li>"Determination of Gaseous Mercury in Ambient Air by Portable Cold Vapor Atomic Absorption Spectrophotometry (Trial)"</li>
-                    <li>"Determination of Total Mercury in Soil by Portable Cold Vapor Atomic Absorption Spectrophotometry (Trial)"</li>
-                    <li>"GB 7468-1987 Determination of Total Mercury in Water Quality by Cold Vapor Atomic Absorption Spectrophotometry"</li>
-                    <li>"HJ 543-2009 Determination of Mercury in Waste Gas from Fixed Pollution Sources by Cold Vapor Atomic Absorption Spectrophotometry"</li>
-                    <li>"GB 15555.1-1995 Determination of Total Mercury in Solid Waste by Cold Vapor Atomic Absorption Spectrophotometry"</li>
+                    <li>"Environmental air determination of gaseous mercury portable cold atomic absorption spectrophotometry (trial)"</li>
+                    <li>"Soil determination of total mercury portable cold atomic absorption spectrophotometry (trial)"</li>
+                    <li>"GB 7468-1987 Water quality determination of total mercury cold atomic absorption spectrophotometry"</li>
+                    <li>"HJ 543-2009 Determination of mercury in fixed pollution source flue gas cold atomic absorption spectrophotometry"</li>
+                    <li>"GB 15555.1-1995 Determination of total mercury in solid waste cold atomic absorption spectrophotometry"</li>
                     <li>"EPA-7473 Mercury in Solids and Solutions by Thermal Decomposition Amalgamation and Atomic Absorption Spectrophotometry"</li>
                     <li>"EPA-30B Determination of Total Vapor Phase Mercury Emissions from Coal-Fired Combustion Sources Using Carbon Sorbent Traps"</li>
                 </ul>
+                <a href="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/mercury-testing-sample.pdf" class="download-link">Download File</a> <!-- Replace with the actual file path -->
+                <div class="image-links">
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/04-LUMEX测汞仪原理示意图.png" alt="Mercury Testing Service Image 1">
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/07-PYRO-915M-2.jpg" alt="Mercury Testing Service Image 2">
+                </div>
             </div>
         </section>
 
-        <section id="aerosol-testing" class="hidden">
+        <section id="aerosol-testing-details" class="hidden">
             <div class="content">
-                <p><strong>Aerosol Particle Size Spectrum Testing Services: ELPI+TM (DEKATI)</strong></p>
-                <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/09-ELPI+.png" alt="ELPI+TM">
-                <p><strong>Technical indicators:</strong></p>
+                <p><strong>Aerosol Particle Size Distribution Testing Service: ELPI+TM (DEKATI)</strong></p>
+                <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/09-ELPI+.png" alt="ELPI+TM Image">
+                <p><strong>Technical specifications:</strong></p>
                 <ul>
                     <li>Flow rate: 10 L/min</li>
-                    <li>Particle size range: 14 levels, 0.006-10μm;</li>
-                    <li>Parameters: Aerosol particle size distribution, including charge distribution (Current), mass concentration distribution (Mass), particle size distribution (Diameter), number concentration distribution (Number), area distribution (Area), volume distribution (Volume), etc.;</li>
+                    <li>Particle size range: 14 stages, 0.006-10 μm;</li>
+                    <li>Parameters: Aerosol particle size distribution, including current distribution, mass concentration distribution, diameter distribution, number concentration distribution, area distribution, volume distribution, etc.;</li>
                     <li>Sampling frequency: 10 Hz;</li>
-                    <li>Can also be used for sample collection: Samples can be used for SEM Analysis, TEM Analysis, Chemical Analysis, etc.</li>
+                    <li>Can also be used for sample collection: samples can be used for SEM analysis, TEM analysis, chemical analysis, etc.;</li>
                 </ul>
                 <p><strong>Application fields:</strong> Electronic cigarette aerosol testing and other fields</p>
+                <a href="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/aerosol-testing-sample.pdf" class="download-link">Download File</a> <!-- Replace with the actual file path -->
+                <div class="image-links">
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/06-气溶胶测试-02.png" alt="Aerosol Particle Size Distribution Testing Service Image 1">
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/09-ELPI+-2.png" alt="Aerosol Particle Size Distribution Testing Service Image 2">
+                </div>
             </div>
         </section>
 
-        <section id="ion-analysis" class="hidden">
+        <section id="ion-analysis-details" class="hidden">
             <div class="content">
-                <p><strong>Inorganic Water-Soluble Ion Analysis Services: ICS-600 (Thermo Scientific Dionex ICS600)</strong></p>
+                <p><strong>Water-soluble Inorganic Ion Analysis Service: ICS-600 (Thermo Scientific Dionex ICS600)</strong></p>
                 <p><strong>Anions:</strong> Cl-, SO42-, NO3-, and PO43-;</p>
                 <p><strong>Cations:</strong> Na+, K+, NH4+, Mg2+, and Ca2+</p>
-                <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/08-ICS600.png" alt="ICS-600">
+                <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/08-ICS600.png" alt="ICS-600 Image">
+                <a href="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/ion-analysis-sample.pdf" class="download-link">Download File</a> <!-- Replace with the actual file path -->
+                <div class="image-links">
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/08-ICS600.png" alt="Water-soluble Inorganic Ion Analysis Service Image 1">
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/08-ICS600-2.png" alt="Water-soluble Inorganic Ion Analysis Service Image 2">
+                </div>
+            </div>
+        </section>
+
+        <section id="new-product-1-details" class="hidden">
+            <div class="content">
+                <p><strong>New Product 1:</strong></p>
+                <p>This is the detailed description of New Product 1.</p>
+                <a href="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/new-product-1-sample.pdf" class="download-link">Download File</a> <!-- Replace with the actual file path -->
+                <div class="image-links">
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/new-product-1.png" alt="New Product 1 Image 1">
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/new-product-1-2.png" alt="New Product 1 Image 2">
+                </div>
+            </div>
+        </section>
+
+        <section id="new-product-2-details" class="hidden">
+            <div class="content">
+                <p><strong>New Product 2:</strong></p>
+                <p>This is the detailed description of New Product 2.</p>
+                <a href="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/new-product-2-sample.pdf" class="download-link">Download File</a> <!-- Replace with the actual file path -->
+                <div class="image-links">
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/new-product-2.png" alt="New Product 2 Image 1">
+                    <img src="https://raw.githubusercontent.com/Eternalwizard/hrja-tech/main/new-product-2-2.png" alt="New Product 2 Image 2">
+                </div>
             </div>
         </section>
 
         <section id="about" class="hidden">
             <div class="content">
-                <p>Tianjin Huaruijiaan Technology Co., Ltd. is a high-tech enterprise focusing on the research and application of environmental protection technology. The company is committed to providing efficient and accurate environmental monitoring solutions. The main products include EPA 30B sampling tubes and various mercury testing services. Our products and services are widely used in flue gas mercury sampling from fixed pollution sources, aerosol particle size testing, and other fields to ensure that customers obtain accurate and reliable environmental monitoring data.</p>
-                <p>The company has a professional R&D team and advanced laboratory equipment, always adhering to technological innovation as the core driving force, continuously improving product quality and service levels. We use internationally recognized testing methods and technologies to provide comprehensive environmental monitoring solutions for customers, including the determination of total mercury in ambient air, soil, water quality, solid waste, and the distribution of aerosol particle size.</p>
-                <p>Huaruijiaan Technology always adheres to the corporate philosophy of "integrity, innovation, cooperation, and win-win", dedicated to promoting the development and progress of environmental monitoring technology. We will continue to strive to provide customers with better products and services, contributing to environmental protection and building a beautiful home together.</p>
+                <p>Tianjin Huarui Jiaan Technology Co., Ltd. is a high-tech enterprise specializing in the research and application of environmental protection technology. The company is committed to providing efficient and accurate environmental monitoring solutions. The main products include EPA 30B sampling tubes and various mercury testing services. Our products and services are widely used in flue gas mercury sampling, aerosol particle size testing, and other fields, ensuring that customers can obtain accurate and reliable environmental monitoring data.</p>
+                <p>The company has a professional R&D team and advanced laboratory equipment, always adhering to technological innovation as the core driving force, continuously improving product quality and service levels. We adopt testing methods and technologies that meet international standards to provide customers with comprehensive environmental monitoring solutions, including the determination of total mercury in ambient air, soil, water, and solid waste, as well as aerosol particle size distribution and other tests.</p>
+                <p>Huarui Jiaan Technology always adheres to the corporate philosophy of "integrity, innovation, cooperation, and win-win," committed to promoting the development and progress of environmental monitoring technology. We will continue to work hard to provide customers with better products and services, contributing to environmental protection and building a better home together.</p>
             </div>
         </section>
 
         <section id="contact" class="hidden">
             <div class="content">
                 <p><strong style="color: blue;">Contact Information:</strong></p>
-                <p><strong>Email:</strong> <a href="mailto:r.lu.paradise@gmail.com">r.lu.paradise@gmail.com</a> (Replies within 24 hours)</p>
-                <p><strong>QQ:</strong> <a href="QQ:68172295">68172295</a></p>
+                <p><strong>Phone:</strong> <a href="tel:18911477356">18911477356</a></p>
+                <p><strong>Email:</strong> <a href="mailto:r.lu.paradise@gmail.com">r.lu.paradise@gmail.com</a> (Reply within 24 hours)</p>
+                <p><strong>QQ:</strong> <a href="qq:68172295">68172295</a></p>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Tianjin Huaruijiaan Technology Co., Ltd. All rights reserved.</p>
+        <p>&copy; 2024 Tianjin Huarui Jiaan Technology Co., Ltd. All rights reserved.</p>
     </footer>
 </body>
 </html>
-
-      
